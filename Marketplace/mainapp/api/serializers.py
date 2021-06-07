@@ -29,7 +29,7 @@ class BaseProductSerializer(serializers.ModelSerializer):
 class CartProductSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(queryset=Customer.objects)
     cart = serializers.PrimaryKeyRelatedField(queryset=Cart.objects)
-    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects)
+    product = serializers.SlugRelatedField(queryset=Product.objects, slug_field='title')
     qty = serializers.IntegerField(required=True)
     final_price = serializers.DecimalField(max_digits=9, decimal_places=2, required=True)
 
@@ -42,7 +42,7 @@ class CartSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        fields = '__all__'
+        fields = ('total_products', 'final_price', 'in_order', 'for_anonymous_user', 'products', 'owner')
 
 
 class OrderSerializer(serializers.ModelSerializer):

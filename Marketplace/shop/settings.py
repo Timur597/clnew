@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'specs',
     'crispy_forms',
     'rest_framework',
+    'rest_framework.authtoken',
     'djoser',
-
 ]
 
 MIDDLEWARE = [
